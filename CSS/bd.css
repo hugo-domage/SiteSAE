@@ -1,0 +1,35 @@
+body{
+    background-color: black;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: #fff;
+}
+
+tr,th,td,label{
+    color: #fff;
+}
+
+hr{
+    border: #999;
+}
+
+.row{
+    justify-content: center;
+    
+    
+}
+
+
+.col-md-4{
+    gap: 10%;
+}
+
+
+.col-md-8 {
+    text-align: center;
+
+}
+
+
+
