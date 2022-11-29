@@ -1,10 +1,12 @@
 <?php
-    include_once("action.php");
+    require("./connexion.php");
     $difficulty="";
     $number="";
     $qcm="";
     $question="";
     $answer="";
+
+    $modify="";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -46,8 +48,9 @@
                     include_once("connexion.php");
 
                     $query = "SELECT * FROM t_question_reponse";
-                    $result = pg_query($con,$query);
-                    while($row = pg_fetch_assoc($result))
+                    $q = $con ->prepare($query);
+                    $q->execute();
+                    while($row = $q -> fetch())
                     {
                 ?>
                     <tr class="Rows">

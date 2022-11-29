@@ -1,7 +1,7 @@
 <?php
 
 use LDAP\Result;
-    include_once("connexion.php");
+    require("./connexion.php");
    
     $difficulty="";
     $number="";
@@ -20,8 +20,9 @@ use LDAP\Result;
         $answer = $_POST['answer'];
 
         $query = "INSERT INTO t_question_reponse(Type_Question, id_question, Qcm, Question, Reponse) VALUES('$difficulty','$number','$qcm','$question','$answer')";
-        $result = pg_query($con,$query);
-        if($result){
+        $q = $con ->prepare($query);
+        $res = $q->execute();
+        if($res){
             echo "<div class= 'succes'>
                 <h3>question ajouté avec succès</h3>
                 </div>";
@@ -39,8 +40,9 @@ use LDAP\Result;
     {
         $id = $_GET['delete'];
         $query = "DELETE FROM t_question_reponse WHERE id_question = '$id'";
-        $result = pg_query($con,$query);
-        if($result)
+        $q = $con ->prepare($query);
+        $res = $q->execute();
+        if($res)
         {
             echo "Supprimer avec succès";
         }
@@ -64,9 +66,10 @@ use LDAP\Result;
         $answer = $_POST['answer'];
 
         $query = "UPDATE t_question_reponse SET type_question='$difficulty', id_question='$number', QCM='$qcm', question='$question', reponse='$answer' WHERE id_question='$number'";
-        $result = pg_query($con,$query);
+        $q = $con ->prepare($query);
+        $res = $q->execute();
 
-        if($result)
+        if($res)
         {
             echo "modification successful";
         }

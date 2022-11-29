@@ -4,9 +4,11 @@ $user = "nyjbtmho";
 $pass = "WvPejF_xswmg5DlxRD7vtm8ZyLx0BaXw";
 $db = "nyjbtmho";
 
-$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
- or die ("Could not connect to server\n");
+try{
 
+
+$con = new PDO("pgsql:host=$host; port=5432; dbname=$db; user=$user; password=$pass")
+or die ("Could not connect to server\n");
 
 // Closing connection
 //pg_close($con);
@@ -18,5 +20,8 @@ $con = pg_connect("host=$host dbname=$db user=$user password=$pass")
         exit;
       break;
     }
+  }
+}catch(PDOException $e){
+  echo $e->getMessage();
   }
 ?>
