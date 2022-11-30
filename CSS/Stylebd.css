@@ -1,0 +1,59 @@
+body{
+    background-color: black;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: #fff;
+    text-align: center;
+}
+
+th,td{
+    color: #fff;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+}
+
+label{
+    color: #ddd;
+}
+
+thead tr{
+    background-color: gray;
+}
+    
+.tableau {
+    text-align: center;
+    border: solid white;
+}
+
+.formulaire{
+    text-align: center;
+}
+
+.Dbutton{
+    background-color: red;
+}
+
+.Dbutton:hover{
+    background-color: lightcoral;
+}
+
+.Dbutton:active{
+    background-color: lightcoral;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.Ubutton{
+    background-color:   green;
+}
+
+.Ubutton:hover{
+    background-color: lightgreen;
+}
+
+.Ubutton:active{
+    background-color: lightcoral;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

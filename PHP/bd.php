@@ -15,20 +15,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base de données - SAE</title>
-    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/bd.css">
+    <link rel="stylesheet" href="../CSS/Stylebd.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="container col-md-12">
-        <div class="row">
-            <div class="col-md-8">
+            <div class="tableau">
                 <br>
                 <h3>DATABASE :</h3>
                 <hr>
             </div>
-        </div>
         <div class="rows">
-            <div class= "col-md-8">
+            <div class= "tableau">
             <h3> Show data in Database </h3>
             <hr>
             <div class="table responsive">
@@ -59,8 +56,8 @@
                         <td><?php echo $row['qcm']?></td>
                         <td><?php echo $row['question']?></td>
                         <td><?php echo $row['reponse']?></td>
-                        <td><a href="action.php?delete=<?php echo $row['id_question'] ?>" class="btn btn-danger">Delete</a></td>
-                        <td><a href="bd.php?update=<?php echo $row['id_question']?>" class="btn btn-info">Update</a></td>
+                        <td><a href="action.php?delete=<?php echo $row['id_question'] ?>" class="Dbutton">Delete</a></td>
+                        <td><a href="bd.php?update=<?php echo $row['id_question']?>" class="Ubutton">Update</a></td>
                     </tr>
                     <?php
                         }
@@ -69,38 +66,38 @@
             </table>
             </div>
             </div>
-            <div class="col-md-4">
             <h3> Add questions and answers </h3>
             <hr>
-            <form method="post" action="action.php">
-                <div class="form-group">
-                    <label> Difficulty of the question (F, M, D) : </label>
-                    <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
-                </div>
-                <div class="form-group">
-                    <label> Id of the question : </label>
-                    <input type="text" name="number" class="form-control" value="<?php echo $number;?>" placeholder="Number"/>
-                </div>
-                <div class="form-group">
-                    <label> QCM (O,N) </label>
-                    <input type="text" name="qcm" class="form-control" value="<?php echo $qcm;?>" placeholder="QCM" />
-                </div>
-                <div class="form-group">
-                    <label> Question </label>
-                    <input type="text" name="question" class="form-control" value="<?php echo $question;?>" placeholder="Question" />
-                </div>
-                <div class="form-group">
-                    <label> Answer : </label>
-                    <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
-                </div>
-                <div class="form-group">
-                <?php if($modify==true){?>
-                    <input type="submit" name="btn_update" class="btn btn-success" value="modify" />
-                <?php } else { ?>
-                    <input type="submit" name="btn_ajout" class="btn btn-primary" value="Save" />
-                    <?php } ?>
-                </div>
-            </form>
+            <div class="formulaire">
+                <form method="post" action="action.php">
+                    <div class="form-group">
+                        <label> Difficulty of the question (F, M, D) : </label>
+                        <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
+                    </div>
+                    <div class="form-group">
+                        <label> Id of the question : </label>
+                        <input type="text" name="number" class="form-control" value="<?php echo $number;?>" placeholder="Number"/>
+                    </div>
+                    <div class="form-group">
+                        <label> QCM (O,N) </label>
+                        <input type="text" name="qcm" class="form-control" value="<?php echo $qcm;?>" placeholder="QCM" />
+                    </div>
+                    <div class="form-group">
+                        <label> Question </label>
+                        <input type="text" name="question" class="form-control" value="<?php echo $question;?>" placeholder="Question" />
+                    </div>
+                    <div class="form-group">
+                        <label> Answer : </label>
+                        <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
+                    </div>
+                    <div class="form-group">
+                    <?php if($modify==true){?>
+                        <input type="submit" name="btn_update" class="btn btn-success" value="modify" />
+                    <?php } else { ?>
+                        <input type="submit" name="btn_ajout" class="btn btn-primary" value="Save" />
+                        <?php } ?>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
