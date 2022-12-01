@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: black
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -94,7 +94,59 @@ thead tr{
     transform: translateY(4px); 
 }
 
+.btn-update{
+    background-color:  green;
+    display: inline;
+    padding: 10px;
+    border-radius: 1px;
+    border: 2px solid lightgreen;
+}
 
+.btn-update:hover{
+    background-color: lightgreen;
+}
+
+.btn-update:active{
+    background-color: lightseagreen;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px); 
+}
+.btn-update{
+    background-color:  green;
+    display: inline;
+    padding: 10px;
+    border-radius: 1px;
+    border: 2px solid lightgreen;
+}
+
+.btn-update:hover{
+    background-color: lightgreen;
+}
+
+.btn-update:active{
+    background-color: lightseagreen;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px); 
+}
+.qcmbutton{
+    background-color:  red;
+    display: inline;
+    padding: 10px;
+    border-radius: 1px;
+    border: 2px solid lightcoral;   
+}
+
+.qcmbutton:hover{
+    background-color: lightcoral;
+}
+
+.qcmbutton:active{
+    background-color: lightcoral;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px); 
+}
+
+    
 .form-group{
     max-width: 450px;
     background: #FAFAFA;
@@ -103,4 +155,9 @@ thead tr{
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
     border: 6px solid #305A72;
+}
+
+.buttonDelUp{
+    display: flex;
+    justify-content: center;
 }

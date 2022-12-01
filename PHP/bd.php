@@ -1,6 +1,6 @@
 <?php
     require("./connexion.php");
-    require_once("./action.php");
+    require_once("./actionbd.php");
     $difficulty="";
     $number="";
     $qcm="";
@@ -57,7 +57,7 @@
                         <td><?php echo $row['qcm']?></td>
                         <td><?php echo $row['question']?></td>
                         <td><?php echo $row['reponse']?></td>
-                        <td><a href="action.php?delete=<?php echo $row['id_question'] ?>" class="Dbutton">Delete</a></td>
+                        <td><a href="actionbd.php?delete=<?php echo $row['id_question'] ?>" class="Dbutton">Delete</a></td>
                         <td><a href="bd.php?update=<?php echo $row['id_question']?>" class="Ubutton">Update</a></td>
                     </tr>
                     <?php
@@ -70,7 +70,7 @@
             <h3> Add questions and answers </h3>
             <hr>
             <div>
-                <form method="post" action="action.php">
+                <form method="post" action="actionbd.php">
                     <div class="form-group">
                         <label> Difficulty of the question (F, M, D) : </label>
                         <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
@@ -91,11 +91,16 @@
                         <label> Answer : </label>
                         <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
                     </div>
-                    <div>
+                    <div class="buttonDelUp">
                         <input type="submit" name="btn_update" class="btn-update" value="modify" />
                         <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
                     </div>
                 </form>
+                <div class="qcmbutton">
+                    <a href="/PHP/bdchoix.php">
+                        <input type="button" value="Add answers to your qcm question -->"> 
+                    </a>
+                </div>
             </div>
         </div>
     </div>
