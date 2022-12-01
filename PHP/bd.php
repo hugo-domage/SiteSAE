@@ -1,12 +1,13 @@
 <?php
     require("./connexion.php");
+    require_once("./action.php");
     $difficulty="";
     $number="";
     $qcm="";
     $question="";
     $answer="";
 
-    $modify="";
+    $modify= false;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -68,7 +69,7 @@
             </div>
             <h3> Add questions and answers </h3>
             <hr>
-            <div class="formulaire">
+            <div>
                 <form method="post" action="action.php">
                     <div class="form-group">
                         <label> Difficulty of the question (F, M, D) : </label>
@@ -90,12 +91,9 @@
                         <label> Answer : </label>
                         <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
                     </div>
-                    <div class="form-group">
-                    <?php if($modify==true){?>
-                        <input type="submit" name="btn_update" class="btn btn-success" value="modify" />
-                    <?php } else { ?>
-                        <input type="submit" name="btn_ajout" class="btn btn-primary" value="Save" />
-                        <?php } ?>
+                    <div>
+                        <input type="submit" name="btn_update" class="btn-update" value="modify" />
+                        <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
                     </div>
                 </form>
             </div>

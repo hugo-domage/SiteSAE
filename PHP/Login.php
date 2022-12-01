@@ -14,8 +14,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   $q -> execute();
   $row = $q -> fetch();
 
-  var_dump($row);
-
   if($row == true){
     if ($row) {
       if ($password == $row["password"]) {

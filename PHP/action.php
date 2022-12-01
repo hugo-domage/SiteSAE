@@ -9,7 +9,7 @@ use LDAP\Result;
     $question="";
     $answer="";
 
-    $modify = "";
+    
     //inserer les requetes ajouter par l'administrateur dans la base de données.
     if(isset($_POST['btn_ajout']))
     {
@@ -48,12 +48,6 @@ use LDAP\Result;
         }
         header("refresh:1; url=bd.php");
         exit;
-    }
-
-    //affiche la zone de texte
-    if(isset($_GET['update']))
-    {
-       $modify = true;
     }
 
     //bouton modifier
