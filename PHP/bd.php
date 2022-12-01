@@ -1,13 +1,28 @@
 <?php
     require("./connexion.php");
     require_once("./actionbd.php");
+
+    //declaration
     $difficulty="";
     $number="";
     $qcm="";
     $question="";
     $answer="";
-
     $modify= false;
+
+    // recup le nombre de ligne
+    $count =$con -> prepare("SELECT COUNT(id_question) as cpt from t_question_reponse");
+    $count -> setFetchMode(PDO::FETCH_ASSOC);
+    $count -> execute();
+    $tcount = $count -> fetchAll();
+
+    //Pagination
+    @$page=$_GET["page"];
+    if(empty($page)) $page = 1;
+    $nb_element_par_page = 15;
+    $nb_pages = ceil($tcount[0]["cpt"]/$nb_element_par_page);
+    $start=($page-1)*$nb_element_par_page;
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,6 +34,16 @@
     <link rel="stylesheet" href="../CSS/Stylebd.css?v=<?php echo time(); ?>">
 </head>
 <body>
+    <div class="pagination">
+        <?php 
+            for($i=1;$i<=$nb_pages;$i++){
+                if($page!=$i)
+                    echo "<a href='?page=$i'>$i</a>&nbsp;";
+                else
+                    echo"<a>$i</a>&nbsp;";
+            }
+        ?>
+    </div>
     <div class="container col-md-12">
             <div class="tableau">
                 <br>
@@ -45,7 +70,7 @@
                 <?php
                     include_once("connexion.php");
 
-                    $query = "SELECT * FROM t_question_reponse";
+                    $query = "SELECT * FROM t_question_reponse limit $nb_element_par_page OFFSET $start";
                     $q = $con ->prepare($query);
                     $q->execute();
                     while($row = $q -> fetch())
