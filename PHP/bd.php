@@ -52,7 +52,7 @@
             </div>
         <div class="rows">
             <div class= "tableau">
-            <h3> Show data in Database </h3>
+            <h3> Questions and Answers TABLE </h3>
             <hr>
             <div class="table responsive">
             <table class="table table-bordered">
@@ -117,7 +117,7 @@
                         <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
                     </div>
                     <div class="buttonDelUp">
-                        <input type="submit" name="btn_update" class="btn-update" value="modify" />
+                        <input type="submit" name="btn_update" class="btn-update" value="Modify" />
                         <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
                     </div>
                 </form>

@@ -17,7 +17,7 @@
     //Pagination
     @$page=$_GET["page"];
     if(empty($page)) $page = 1;
-    $nb_element_par_page = 10;
+    $nb_element_par_page = 20;
     $nb_pages = ceil($tcount[0]["cpt"]/$nb_element_par_page);
     $start=($page-1)*$nb_element_par_page;
 
@@ -50,7 +50,7 @@
             </div>
         <div class="rows">
             <div class= "tableau">
-            <h3> Show data in Database </h3>
+            <h3> Questions and Answers TABLE </h3>
             <hr>
             <div class="table responsive">
             <table class="table table-bordered">
@@ -109,7 +109,7 @@
                         <input type="text" name="choixreponse" class="form-control" value="<?php echo $choixreponse;?>" placeholder="Reponse"/>
                     </div>
                     <div class="buttonDelUp">
-                        <input type="submit" name="btn_update" class="btn-update" value="modify" />
+                        <input type="submit" name="btn_update" class="btn-update" value="Modify" />
                         <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
                     </div>
                 </form>
