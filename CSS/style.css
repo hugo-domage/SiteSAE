@@ -53,3 +53,7 @@ button:hover{
     opacity: .8;
 }
 
+.adminlogin{
+    display: flex;
+}
+

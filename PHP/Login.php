@@ -13,6 +13,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   $q = $con ->prepare($query);
   $q -> execute();
   $row = $q -> fetch();
+ 
+  
 
   if($row == true){
     if ($row) {
@@ -26,7 +28,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     if($row["usertype"]=="Admin")
     {
       echo "Admin connexion successful";
-      header("location: bd.php");
+      var_dump($row["id"]);
+      header("refresh:1 url=bd.php");
       exit;
     }
   }

@@ -60,7 +60,6 @@
                         <th>TYPE_QUESTION</th>
                         <th>NUM_REPONSE</th>
                         <th>CHOIX_REPONSE</th>
-                        <td colspan="2">Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,8 +77,6 @@
                         <td><?php echo $row['type_question']?></td>
                         <td><?php echo $row['num_reponse']?></td>
                         <td><?php echo $row['choix_reponse']?></td>
-                        <td><a href="actionchoix.php?delete=<?php echo $row['id_question'] ?>" class="Dbutton">Delete</a></td>
-                        <td><a href="actionchoix.php?update=<?php echo $row['id_question']?>" class="Ubutton">Update</a></td>
                     </tr>
                     <?php
                         }
@@ -109,12 +106,12 @@
                         <input type="text" name="choixreponse" class="form-control" value="<?php echo $choixreponse;?>" placeholder="Reponse"/>
                     </div>
                     <div class="buttonDelUp">
-                        <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
+                    <input type="submit" name="btn_update" class="btn-update" value="Modify" />
                     </div>
                 </form>
                 <div class="qcmbutton">
-                    <a href="/PHP/bd.php">
-                        <input type="button" value="Question reponse page -->"> 
+                    <a href="/PHP/bdchoix.php">
+                        <input type="button" value="Cancel"> 
                     </a>
                 </div>
             </div>

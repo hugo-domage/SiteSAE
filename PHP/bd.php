@@ -11,10 +11,11 @@
     $modify= false;
 
     // recup le nombre de ligne
-    $count =$con -> prepare("SELECT COUNT(id_question) as cpt from t_question_reponse");
+    $count =$con -> prepare("SELECT COUNT(id) as cpt from t_question_reponse");
     $count -> setFetchMode(PDO::FETCH_ASSOC);
     $count -> execute();
     $tcount = $count -> fetchAll();
+     
 
     //Pagination
     @$page=$_GET["page"];
@@ -58,8 +59,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="Column">
-                        <th>TYPE_QUESTION</th>
                         <th>ID_QUESTION</th>
+                        <th>TYPE_QUESTION</th>
                         <th>QCM</th>
                         <th>QUESTION</th>
                         <th>REPONSE</th>
@@ -77,13 +78,13 @@
                     {
                 ?>
                     <tr class="Rows">
+                        <td><?php echo $row['id']?></td>
                         <td><?php echo $row['type_question']?></td>
-                        <td><?php echo $row['id_question']?></td>
                         <td><?php echo $row['qcm']?></td>
                         <td><?php echo $row['question']?></td>
                         <td><?php echo $row['reponse']?></td>
-                        <td><a href="actionbd.php?delete=<?php echo $row['id_question'] ?>" class="Dbutton">Delete</a></td>
-                        <td><a href="bd.php?update=<?php echo $row['id_question']?>" class="Ubutton">Update</a></td>
+                        <td><a href="actionbd.php?delete=<?php echo $row['id'] ?>" class="Dbutton">Delete</a></td>
+                        <td><a href="actionbd.php?update=<?php echo $row['id'] ?>" class="Ubutton">update</a></td>
                     </tr>
                     <?php
                         }
@@ -101,10 +102,6 @@
                         <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
                     </div>
                     <div class="form-group">
-                        <label> Id of the question : </label>
-                        <input type="text" name="number" class="form-control" value="<?php echo $number;?>" placeholder="Number"/>
-                    </div>
-                    <div class="form-group">
                         <label> QCM (O,N) </label>
                         <input type="text" name="qcm" class="form-control" value="<?php echo $qcm;?>" placeholder="QCM" />
                     </div>
@@ -117,7 +114,6 @@
                         <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
                     </div>
                     <div class="buttonDelUp">
-                        <input type="submit" name="btn_update" class="btn-update" value="Modify" />
                         <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
                     </div>
                 </form>

@@ -16,7 +16,7 @@ use LDAP\Result;
         $numreponse = $_POST['numreponse'];
         $choixreponse = $_POST['choixreponse'];
 
-        $query = "INSERT INTO t_qcm_choix(type_question, id_question, num_reponse, choix_reponse) VALUES('$difficulty','$number','$numreponse','$choixreponse')";
+        $query = "INSERT INTO t_qcm_choix(type_question, id_question, num_reponse, choix_reponse, date_maj, id_adm) VALUES('$difficulty','$number','$numreponse','$choixreponse',now(), 1)";
         $q = $con ->prepare($query);
         $res = $q->execute();
 
@@ -48,6 +48,14 @@ use LDAP\Result;
         exit;
     }
 
+    //boutton update
+    if(isset($_GET['update']))
+    {
+        $id = $_GET['update'];
+        header("refresh:1; url=modifychoix.php");
+        exit;
+    }
+
     //bouton modifier
     if(isset($_POST['btn_update']))
     {
@@ -56,7 +64,7 @@ use LDAP\Result;
         $numreponse = $_POST['numreponse'];
         $question = $_POST['choixreponse'];
 
-        $query = "UPDATE t_qcm_choix SET type_question='$difficulty', id_question='$number', num_reponse='$numreponse', choix_reponse='$choixreponse' WHERE id_question='$number'";
+        $query = "UPDATE t_qcm_choix SET type_question='$difficulty', id_question='$number', num_reponse='$numreponse', choix_reponse='$choixreponse', id_adm= 1, date_maj= now() WHERE id_question='$number'";
         $q = $con ->prepare($query);
         $res = $q->execute();
 
