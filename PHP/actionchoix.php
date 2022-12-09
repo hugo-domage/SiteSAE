@@ -62,7 +62,7 @@ use LDAP\Result;
         $difficulty = $_POST['difficulty'];
         $number = $_POST['number'];
         $numreponse = $_POST['numreponse'];
-        $question = $_POST['choixreponse'];
+        $choixreponse = $_POST['choixreponse'];
 
         $query = "UPDATE t_qcm_choix SET type_question='$difficulty', id_question='$number', num_reponse='$numreponse', choix_reponse='$choixreponse', id_adm= 1, date_maj= now() WHERE id_question='$number'";
         $q = $con ->prepare($query);

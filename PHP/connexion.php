@@ -7,8 +7,8 @@ $db = "nyjbtmho";
 try{
 
 
-$con = new PDO("pgsql:host=$host; port=5432; dbname=$db; user=$user; password=$pass")
-or die ("Could not connect to server\n");
+$con = new PDO("pgsql:host=$host; port=5432; dbname=$db; user=$user; password=$pass");
+
 
 // Closing connection
 //pg_close($con);
@@ -18,10 +18,13 @@ or die ("Could not connect to server\n");
       case 'info':
         phpinfo(); 
         exit;
-      break;
     }
   }
 }catch(PDOException $e){
   echo $e->getMessage();
+  }
+
+  if (null == $con){
+    exit;
   }
 ?>

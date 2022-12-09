@@ -14,11 +14,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         exit;
     }   
 
-    $q = $con ->prepare('INSERT INTO t_login (email, password) VALUES (:email, :password)');
-    $q->bindValue('email', $email);
-    $q->bindValue('password', $password);
+    $query = "INSERT INTO t_login(email, password, usertype) VALUES('$email','$password','User')";
+    $q = $con ->prepare($query);
     $res = $q->execute();
- 
     if ($res) {
         echo "Inscription réussie";
     }

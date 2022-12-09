@@ -13,30 +13,24 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   $q = $con ->prepare($query);
   $q -> execute();
   $row = $q -> fetch();
+
+
+
+  $location = "Location: ../HTML/Login.html";
  
   
-
-  if($row == true){
     if ($row) {
-      if ($password == $row["password"]) {
-          echo "Connexion réussie !";
-      } else {
-          echo "Identifiants invalides";
-      }
-    }
-
-    if($row["usertype"]=="Admin")
-    {
-      echo "Admin connexion successful";
-      var_dump($row["id"]);
-      header("refresh:1 url=bd.php");
-      exit;
+      if ($password == $row["password"] && $email == $row["email"]) {
+        if($row["usertype"]=="Admin")
+        {
+          echo "Admin connexion successful";
+          $location = "Location: bd.php";
+        }
     }
   }
-  else
-  {
-    echo "username or password incorrect";
-  } 
+
+  echo "username or password incorrect";
+  header($location);
 }
 
 

@@ -1,6 +1,8 @@
 <?php
     require("./connexion.php");
     require_once("./actionchoix.php");
+
+
     $difficulty="";
     $number="";
     $numreponse="";
