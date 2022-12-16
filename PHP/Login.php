@@ -1,20 +1,19 @@
 <?php 
 require("/laragon/www/PHP/connexion.php");
-
+session_start();
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
   $email=$_POST["email"];
-  $password=$_POST["password"];
-
+  $password= $_POST["password"];
 
   $password = hash("sha256",$_POST['password']);
   $query="SELECT * FROM t_login WHERE email='".$email."'AND password='".$password."'";
-
+  
   $q = $con ->prepare($query);
   $q -> execute();
   $row = $q -> fetch();
 
-
+  $_SESSION['emailadm'] = $email;
 
   $location = "Location: ../HTML/Login.html";
  

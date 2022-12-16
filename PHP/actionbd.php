@@ -2,9 +2,7 @@
 
 use LDAP\Result;
     require("./connexion.php");
-
-    
-   
+    session_start();
     $difficulty="";
     $number="";
     $qcm="";
@@ -20,11 +18,14 @@ use LDAP\Result;
         $question = $_POST['question'];
         $answer = $_POST['answer'];
 
-        $query = "INSERT INTO t_question_reponse(Type_Question, Qcm, Question, Reponse, date_maj, id_adm) VALUES('$difficulty','$qcm','$question','$answer', now(), 1)";
-        $q = $con ->prepare($query);
-        $res = $q->execute();
+        //$query = "INSERT INTO t_question_reponse(Type_Question, Qcm, Question, Reponse, date_maj, id_adm) VALUES('$difficulty','$qcm','$question','$_SESSION['emailadm']', now(), 1)";
+        //$q = $con ->prepare($query);
+        //$res = $q->execute();
+        $sql = "INSERT INTO t_question_reponse (Type_Question, Qcm, Question, Reponse, date_maj, emailadm) VALUES(:difficulty, :qcm, :question, :reponse, :date_maj, :emailadm)";
+        $stmt= $con->prepare($sql);
+        $stmt->execute([$difficulty, $qcm, $question, $answer, 'now()', $_SESSION['emailadm']]);
 
-        if($res){
+        if($stmt){
             echo "<div class= 'succes'>
                 <h3>question ajouté avec succès</h3>
                 </div>";
@@ -73,11 +74,18 @@ use LDAP\Result;
         $question = $_POST['question'];
         $answer = $_POST['answer'];
 
-        $query = "UPDATE t_question_reponse SET type_question='$difficulty', id='$number', QCM='$qcm', question='$question', reponse='$answer', id_adm= 1 , date_maj= now() WHERE id='$number'";
-        $q = $con ->prepare($query);
-        $res = $q->execute();
+        $sql = 'UPDATE t_question_reponse ' . 'SET Type_question = :type_question, ' . 'Qcm = :qcm, ' . 'Question = :question, ' . 'Reponse = :reponse, ' . 'date_maj = :date_maj, ' . 'emailadm = :emailadm ' . 'WHERE id = :id';
+        $stmt= $con->prepare($sql);
+        $stmt->bindValue(':type_question', $difficulty);
+        $stmt->bindValue(':qcm', $qcm);
+        $stmt->bindValue(':question', $question);
+        $stmt->bindValue(':reponse', $answer);
+        $stmt->bindValue(':date_maj', 'now()');
+        $stmt->bindValue(':emailadm', $_SESSION['emailadm']);
+        $stmt->bindValue(':id', $number);
+        $stmt -> execute();
 
-        if($res)
+        if($stmt)
         {
             echo "modification successful";
         }

@@ -1,7 +1,7 @@
 <?php
     require("./connexion.php");
     require_once("./actionbd.php");
-
+    session_start();
     //declaration
     $difficulty="";
     $number="";
@@ -23,7 +23,8 @@
     $nb_element_par_page = 15;
     $nb_pages = ceil($tcount[0]["cpt"]/$nb_element_par_page);
     $start=($page-1)*$nb_element_par_page;
-
+    
+    echo $_SESSION['emailadm'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">

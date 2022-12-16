@@ -2,7 +2,7 @@
 
 use LDAP\Result;
     require("./connexion.php");
-   
+    session_start();
     $difficulty="";
     $number="";
     $numreponse="";
@@ -16,11 +16,11 @@ use LDAP\Result;
         $numreponse = $_POST['numreponse'];
         $choixreponse = $_POST['choixreponse'];
 
-        $query = "INSERT INTO t_qcm_choix(type_question, id_question, num_reponse, choix_reponse, date_maj, id_adm) VALUES('$difficulty','$number','$numreponse','$choixreponse',now(), 1)";
-        $q = $con ->prepare($query);
-        $res = $q->execute();
+        $sql = "INSERT INTO t_qcm_choix (Type_Question, id_question, num_reponse, choix_reponse, emailadm, date_maj) VALUES(:difficulty, :id_question, :num_reponse, :choix_reponse, :emailadm, :date_maj)";
+        $stmt= $con->prepare($sql);
+        $stmt->execute([$difficulty, $number, $numreponse, $choixreponse, $_SESSION['emailadm'], 'now()']);
 
-        if($res){
+        if($stmt){
             echo "<div class= 'succes'>
                 <h3>reponse ajouté avec succès</h3>
                 </div>";
@@ -64,11 +64,17 @@ use LDAP\Result;
         $numreponse = $_POST['numreponse'];
         $choixreponse = $_POST['choixreponse'];
 
-        $query = "UPDATE t_qcm_choix SET type_question='$difficulty', id_question='$number', num_reponse='$numreponse', choix_reponse='$choixreponse', id_adm= 1, date_maj= now() WHERE id_question='$number'";
-        $q = $con ->prepare($query);
-        $res = $q->execute();
+        $sql = 'UPDATE t_qcm_choix' . 'SET Type_question = :type_question, ' . 'num_reponse = :num_reponse, ' . 'choix_reponse = :choix_reponse, '  . 'emailadm = :emailadm,' . 'date_maj = :date_maj' . 'WHERE id_question = :id_question';
+        $stmt= $con->prepare($sql);
+        $stmt->bindValue(':type_question', $difficulty);
+        $stmt->bindValue(':id_question', $number);
+        $stmt->bindValue(':num_reponse', $numreponse);
+        $stmt->bindValue(':choix_reponse', $choixreponse);
+        $stmt->bindValue(':emailadm', $_SESSION['emailadm']);
+        $stmt->bindValue(':date_maj', 'now()');
+        $stmt -> execute();
 
-        if($res)
+        if($stmt)
         {
             echo "modification successful";
         }
