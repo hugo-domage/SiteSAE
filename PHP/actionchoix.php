@@ -4,9 +4,11 @@ use LDAP\Result;
     require("./connexion.php");
     session_start();
     $difficulty="";
-    $number="";
     $numreponse="";
     $choixreponse="";
+    $id="";
+
+    $modifier="";
     
     //inserer les requetes ajouter par l'administrateur dans la base de données.
     if(isset($_POST['btn_ajout']))
@@ -52,12 +54,23 @@ use LDAP\Result;
     if(isset($_GET['update']))
     {
         $id = $_GET['update'];
-        header("refresh:1; url=modifychoix.php");
-        exit;
+
+        $sql = "SELECT * FROM t_qcm_choix WHERE id_question='$id'";
+        $stmt= $con->prepare($sql);
+        $stmt -> execute();
+
+        $row = $stmt -> fetch();
+
+        $difficulty = $row['type_question'];
+        $id = $row['id_question'];
+        $numreponse = $row['num_reponse'];
+        $choixreponse = $row['choix_reponse'];
+
+        $modifier = true;
     }
 
     //bouton modifier
-    if(isset($_POST['btn_update']))
+    if(isset($_POST['btn_edit']))
     {
         $difficulty = $_POST['difficulty'];
         $number = $_POST['number'];

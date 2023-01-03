@@ -25,6 +25,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
           echo "Admin connexion successful";
           $location = "Location: bd.php";
         }
+      else{
+        $location = "Location: ../HTML/game.html";
+      }
     }
   }
 

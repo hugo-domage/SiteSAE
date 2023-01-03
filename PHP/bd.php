@@ -1,14 +1,8 @@
 <?php
     require("./connexion.php");
-    require_once("./actionbd.php");
-    session_start();
+    require("./actionbd.php");
     //declaration
-    $difficulty="";
-    $number="";
-    $qcm="";
-    $question="";
-    $answer="";
-    $modify= false;
+
 
     // recup le nombre de ligne
     $count =$con -> prepare("SELECT COUNT(id) as cpt from t_question_reponse");
@@ -85,7 +79,7 @@
                         <td><?php echo $row['question']?></td>
                         <td><?php echo $row['reponse']?></td>
                         <td><a href="actionbd.php?delete=<?php echo $row['id'] ?>" class="Dbutton">Delete</a></td>
-                        <td><a href="actionbd.php?update=<?php echo $row['id'] ?>" class="Ubutton">update</a></td>
+                        <td><a href="bd.php?update=<?php echo $row['id'] ?>" class="Ubutton">update</a></td>
                     </tr>
                     <?php
                         }
@@ -100,6 +94,7 @@
                 <form method="post" action="actionbd.php">
                     <div class="form-group">
                         <label> Difficulty of the question (F, M, D) : </label>
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $id;?>" placeholder="Difficulty"/>
                         <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
                     </div>
                     <div class="form-group">
@@ -115,7 +110,11 @@
                         <input type="text" name="answer" class="form-control" value="<?php echo $answer;?>" placeholder="Answer" />
                     </div>
                     <div class="buttonDelUp">
-                        <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
+                        <?php if($modifier==true){?>
+                            <input type="submit" name="btn_edit" class="btn-save" value="Edit" />
+                        <?php } else {?>
+                            <input type="submit" name="btn_ajout" class="btn-save" value="Save" />
+                        <?php } ?>
                     </div>
                 </form>
                 <div class="qcmbutton">

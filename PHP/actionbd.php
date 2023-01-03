@@ -3,13 +3,12 @@
 use LDAP\Result;
     require("./connexion.php");
     session_start();
-    $difficulty="";
-    $number="";
-    $qcm="";
-    $question="";
-    $answer="";
-    
-    
+        $difficulty = "";
+        $qcm = "";
+        $question = "";
+        $answer = "";
+
+        $modifier="";
     //bouton save
     if(isset($_POST['btn_ajout']))
     {
@@ -53,23 +52,34 @@ use LDAP\Result;
         exit;
     }
 
-    //bouton update
-
+    //bouton update qui affiche ce qu'on veut modifier dans le formulaire
     if(isset($_GET['update']))
     {
         $id = $_GET['update'];
-        header("refresh:1; url=modifybd.php");
-        exit;
+
+        $sql = "SELECT * FROM t_question_reponse WHERE id='$id'";
+        $stmt= $con->prepare($sql);
+        $stmt -> execute();
+
+        $row = $stmt -> fetch();
+
+        $id = $row['id'];
+        $difficulty = $row['type_question'];
+        $qcm = $row['qcm'];
+        $question = $row['question'];
+        $answer = $row['reponse'];
+
+        $modifier = true;
+    
     }
 
 
 
 
-    //bouton modify
-    if(isset($_POST['btn_update']))
+    //bouton modify qui permet d'enregistrer les modifications
+    if(isset($_POST['btn_edit']))
     {
         $difficulty = $_POST['difficulty'];
-        $number = $_POST['number'];
         $qcm = $_POST['qcm'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
@@ -82,7 +92,7 @@ use LDAP\Result;
         $stmt->bindValue(':reponse', $answer);
         $stmt->bindValue(':date_maj', 'now()');
         $stmt->bindValue(':emailadm', $_SESSION['emailadm']);
-        $stmt->bindValue(':id', $number);
+        $stmt->bindValue(':id', $id);
         $stmt -> execute();
 
         if($stmt)
