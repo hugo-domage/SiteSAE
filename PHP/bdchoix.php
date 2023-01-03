@@ -1,8 +1,7 @@
 <?php
     require("./connexion.php");
     require("./actionchoix.php");
-
-
+    
     // recup le nombre de ligne
     $count =$con -> prepare("SELECT COUNT(id_question) as cpt from t_qcm_choix");
     $count -> setFetchMode(PDO::FETCH_ASSOC);

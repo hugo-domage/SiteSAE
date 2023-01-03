@@ -1,7 +1,7 @@
 <?php
     require("./connexion.php");
     require("./actionbd.php");
-    //declaration
+    
 
 
     // recup le nombre de ligne
