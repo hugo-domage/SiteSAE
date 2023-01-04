@@ -1,7 +1,7 @@
 <?php
     require("./connexion.php");
     require("./actionbd.php");
-    
+    //declaration
 
 
     // recup le nombre de ligne
@@ -93,8 +93,11 @@
             <div>
                 <form method="post" action="actionbd.php">
                     <div class="form-group">
+                        <label> ID </label>
+                        <input type="text" name="id" class="form-control" value="<?php echo $id;?>" placeholder="ID" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
                         <label> Difficulty of the question (F, M, D) : </label>
-                        <input type="hidden" name="id" class="form-control" value="<?php echo $id;?>" placeholder="Difficulty"/>
                         <input type="text" name="difficulty" class="form-control" value="<?php echo $difficulty;?>" placeholder="Difficulty"/>
                     </div>
                     <div class="form-group">

@@ -3,6 +3,7 @@
 use LDAP\Result;
     require("./connexion.php");
     session_start();
+        $id = "";
         $difficulty = "";
         $qcm = "";
         $question = "";
@@ -79,6 +80,7 @@ use LDAP\Result;
     //bouton modify qui permet d'enregistrer les modifications
     if(isset($_POST['btn_edit']))
     {
+        $id = $_POST['id'];
         $difficulty = $_POST['difficulty'];
         $qcm = $_POST['qcm'];
         $question = $_POST['question'];

@@ -1,7 +1,8 @@
 <?php
     require("./connexion.php");
     require("./actionchoix.php");
-    
+
+
     // recup le nombre de ligne
     $count =$con -> prepare("SELECT COUNT(id_question) as cpt from t_qcm_choix");
     $count -> setFetchMode(PDO::FETCH_ASSOC);
@@ -88,7 +89,7 @@
                 <form method="post" action="actionchoix.php">
                     <div class="form-group">
                         <label> Id of the question : </label>
-                        <input type="text" name="number" class="form-control" value="<?php echo $id;?>" placeholder="Number"/>
+                        <input type="text" name="number" class="form-control" value="<?php echo $id;?>" placeholder="Number" readonly="readonly"/>
                     </div>
                     <div class="form-group">
                         <label> Difficulty of the question (F, M, D) : </label>
