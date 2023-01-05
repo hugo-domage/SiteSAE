@@ -62,7 +62,7 @@
                 <?php
                     include_once("connexion.php");
 
-                    $query = "SELECT * FROM t_qcm_choix limit $nb_element_par_page OFFSET $start";
+                    $query = "SELECT * FROM t_qcm_choix order by id_question limit $nb_element_par_page OFFSET $start";
                     $q = $con ->prepare($query);
                     $q->execute();
                     while($row = $q -> fetch())

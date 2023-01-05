@@ -77,14 +77,14 @@ use LDAP\Result;
         $numreponse = $_POST['numreponse'];
         $choixreponse = $_POST['choixreponse'];
 
-        $sql = 'UPDATE t_qcm_choix' . 'SET Type_question = :type_question, ' . 'num_reponse = :num_reponse, ' . 'choix_reponse = :choix_reponse, '  . 'emailadm = :emailadm,' . 'date_maj = :date_maj' . 'WHERE id_question = :id_question';
+        $sql = 'UPDATE t_qcm_choix ' . 'SET Type_question = :type_question, ' . 'num_reponse = :num_reponse, ' . 'choix_reponse = :choix_reponse, '  . 'emailadm = :emailadm, ' . 'date_maj = :datemaj ' . 'WHERE id_question = :id_question';
         $stmt= $con->prepare($sql);
         $stmt->bindValue(':type_question', $difficulty);
         $stmt->bindValue(':id_question', $number);
         $stmt->bindValue(':num_reponse', $numreponse);
         $stmt->bindValue(':choix_reponse', $choixreponse);
         $stmt->bindValue(':emailadm', $_SESSION['emailadm']);
-        $stmt->bindValue(':date_maj', 'now()');
+        $stmt->bindValue(':datemaj', 'now()');
         $stmt -> execute();
 
         if($stmt)

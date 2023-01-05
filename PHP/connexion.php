@@ -1,7 +1,7 @@
 <?php
 $host = "lucky.db.elephantsql.com";
 $user = "nyjbtmho";
-$pass = "WvPejF_xswmg5DlxRD7vtm8ZyLx0BaXw";
+$pass = "ILZMPn922ytEsKA_D5HGKSBIGo7rT7of";
 $db = "nyjbtmho";
 
 try{

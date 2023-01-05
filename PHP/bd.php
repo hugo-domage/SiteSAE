@@ -18,7 +18,6 @@
     $nb_pages = ceil($tcount[0]["cpt"]/$nb_element_par_page);
     $start=($page-1)*$nb_element_par_page;
     
-    echo $_SESSION['emailadm'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,7 +65,7 @@
                 <?php
                     include_once("connexion.php");
 
-                    $query = "SELECT * FROM t_question_reponse limit $nb_element_par_page OFFSET $start";
+                    $query = "SELECT * FROM t_question_reponse order by id limit $nb_element_par_page OFFSET $start";
                     $q = $con ->prepare($query);
                     $q->execute();
                     while($row = $q -> fetch())
