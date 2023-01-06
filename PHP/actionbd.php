@@ -2,7 +2,8 @@
 
 use LDAP\Result;
     require("./connexion.php");
-    session_start();
+
+        // Initialisation des variables
         $id = "";
         $difficulty = "";
         $qcm = "";
@@ -10,21 +11,22 @@ use LDAP\Result;
         $answer = "";
 
         $modifier="";
-    //bouton save
+
+    // Traitement du formulaire d'ajout
     if(isset($_POST['btn_ajout']))
     {
+        // Récupération des données
         $difficulty = $_POST['difficulty'];
         $qcm = $_POST['qcm'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
 
-        //$query = "INSERT INTO t_question_reponse(Type_Question, Qcm, Question, Reponse, date_maj, id_adm) VALUES('$difficulty','$qcm','$question','$_SESSION['emailadm']', now(), 1)";
-        //$q = $con ->prepare($query);
-        //$res = $q->execute();
+        // Requête SQL pour insérer les données
         $sql = "INSERT INTO t_question_reponse (Type_Question, Qcm, Question, Reponse, date_maj, emailadm) VALUES(:difficulty, :qcm, :question, :reponse, :date_maj, :emailadm)";
         $stmt= $con->prepare($sql);
         $stmt->execute([$difficulty, $qcm, $question, $answer, 'now()', $_SESSION['emailadm']]);
 
+        // Message de succès ou d'erreur
         if($stmt){
             echo "<div class= 'succes'>
                 <h3>question ajouté avec succès</h3>
@@ -34,34 +36,43 @@ use LDAP\Result;
                 <h3>la question n'a pas été ajouté, il y a une erreur</h3>
                 </div>";
         }
+        // Redirection vers la page
         header("refresh:1; url=bd.php");
         exit;
     }
 
-    //bouton delete
+    
+    // Traitement de la suppression
     if(isset($_GET['delete']))
     {
+        // Récupération de l'id dans le lien
         $id = $_GET['delete'];
+        // Requête SQL pour supprimer
         $query = "DELETE FROM t_question_reponse WHERE id = '$id'";
         $q = $con ->prepare($query);
         $res = $q->execute();
+        // Message de succès ou d'erreur
         if($res)
         {
             echo "Supprimer avec succès";
         }
+        // Redirection vers la page
         header("refresh:1; url=bd.php");
         exit;
     }
 
-    //bouton update qui affiche ce qu'on veut modifier dans le formulaire
+    // Traitement de la modification
     if(isset($_GET['update']))
     {
+        // Récupération de l'id dans le lien
         $id = $_GET['update'];
 
+        // Requête SQL pour récupérer les données
         $sql = "SELECT * FROM t_question_reponse WHERE id='$id'";
         $stmt= $con->prepare($sql);
         $stmt -> execute();
 
+        // Récupération des données
         $row = $stmt -> fetch();
 
         $id = $row['id'];
@@ -74,18 +85,17 @@ use LDAP\Result;
     
     }
 
-
-
-
-    //bouton modify qui permet d'enregistrer les modifications
+    // Traitement du formulaire de modification
     if(isset($_POST['btn_edit']))
     {
+        // Récupération des données
         $id = $_POST['id'];
         $difficulty = $_POST['difficulty'];
         $qcm = $_POST['qcm'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
 
+        // Requête SQL pour mettre à jour les données
         $sql = 'UPDATE t_question_reponse ' . 'SET Type_question = :type_question, ' . 'Qcm = :qcm, ' . 'Question = :question, ' . 'Reponse = :reponse, ' . 'date_maj = :date_maj, ' . 'emailadm = :emailadm ' . 'WHERE id = :id';
         $stmt= $con->prepare($sql);
         $stmt->bindValue(':type_question', $difficulty);
@@ -97,14 +107,13 @@ use LDAP\Result;
         $stmt->bindValue(':id', $id);
         $stmt -> execute();
 
+        // Message de succès ou d'erreur
         if($stmt)
         {
             echo "modification successful";
         }
+            // Redirection vers la page
             header("refresh:1; url=bd.php");
             exit;
 
     }
-
-
-?>

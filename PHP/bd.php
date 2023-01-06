@@ -1,21 +1,31 @@
 <?php
     require("./connexion.php");
     require("./actionbd.php");
-    //declaration
+    session_start();
 
+    // On vérifie si la session emailadm est enregistrée, si ce n'est pas le cas on redirige vers la page de connexion
+    if ($_SESSION['emailadm'] == false)
+    {
+        header("location: ../HTML/Login.html");
+        exit;
+    }
 
-    // recup le nombre de ligne
+    // On prépare une requête qui va compter le nombre d'entrées dans la table t_question_reponse
     $count =$con -> prepare("SELECT COUNT(id) as cpt from t_question_reponse");
     $count -> setFetchMode(PDO::FETCH_ASSOC);
     $count -> execute();
     $tcount = $count -> fetchAll();
-     
 
-    //Pagination
+    //Pagination :
+    // On récupère le paramètre page de l'URL.
     @$page=$_GET["page"];
+    //Si la page n'est pas définie on initialise la page à 1.
     if(empty($page)) $page = 1;
+    // On définit le nombre d'éléments par page.
     $nb_element_par_page = 15;
+    // On calcule le nombre de pages totales.
     $nb_pages = ceil($tcount[0]["cpt"]/$nb_element_par_page);
+    // On calcule la position de départ pour la requête.
     $start=($page-1)*$nb_element_par_page;
     
 ?>
