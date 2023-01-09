@@ -2,7 +2,6 @@
     require("./connexion.php");
     require("./actionchoix.php");
 
-    session_start();
 
     // On vérifie si la session emailadm est enregistrée, si ce n'est pas le cas on redirige vers la page de connexion
     if ($_SESSION['emailadm'] == false)

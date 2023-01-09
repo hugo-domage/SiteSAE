@@ -1,6 +1,7 @@
 <?php
 
 use LDAP\Result;
+    session_start();
     require("./connexion.php");
 
         // Initialisation des variables
@@ -106,6 +107,7 @@ use LDAP\Result;
         $stmt->bindValue(':emailadm', $_SESSION['emailadm']);
         $stmt->bindValue(':id', $id);
         $stmt -> execute();
+    
 
         // Message de succès ou d'erreur
         if($stmt)
@@ -115,5 +117,6 @@ use LDAP\Result;
             // Redirection vers la page
             header("refresh:1; url=bd.php");
             exit;
+            die;
 
     }

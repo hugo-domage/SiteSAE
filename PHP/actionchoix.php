@@ -1,6 +1,7 @@
 <?php
 
 use LDAP\Result;
+    session_start();
     require("./connexion.php");
 
     // Initialisation des variables
